@@ -75,7 +75,12 @@ router.put('/:id', (req, res) => {
       res.status(404).json({ message: `No Tag with ID ${req.params.id} found !!!` });
       return;
     }
-    res.json(dbTagData);
+    res.json(
+      {
+        "id": req.params.id,
+        "category_name": req.body.category_name,
+        "affected-row": dbTagData[0]
+      });
   })
     .catch(err => {
       console.log(err);
@@ -94,7 +99,7 @@ router.delete('/:id', (req, res) => {
       res.status(404).json({ message: `No Tag with ID ${req.params.id} found !!!` });
       return;
     }
-    res.json(dbTagData);
+    res.json({ "id": req.params.id, "affected-row": dbTagData });
   })
     .catch(err => {
       console.log(err);

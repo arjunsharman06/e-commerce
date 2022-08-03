@@ -143,7 +143,7 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   }).then((dbProductData) => {
-    res.json(dbProductData);
+    res.json({ "id": req.params.id, "affected-row": dbProductData });
   })
     .catch(err => {
       console.log(err);

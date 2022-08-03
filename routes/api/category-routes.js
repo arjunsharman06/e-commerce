@@ -75,7 +75,13 @@ router.put('/:id', (req, res) => {
       res.status(404).json({ message: `No category with ID ${req.params.id} found !!!` });
       return;
     }
-    res.json(dbCategoryData);
+
+    res.json(
+      {
+        "id": req.params.id,
+        "category_name": req.body.category_name,
+        "affected-row": dbCategoryData[0]
+      });
   })
     .catch(err => {
       console.log(err);
@@ -94,7 +100,8 @@ router.delete('/:id', (req, res) => {
       res.status(404).json({ message: `No category with ID ${req.params.id} found !!!` });
       return;
     }
-    res.json(dbCategoryData);
+
+    res.json({ "id": req.params.id, "affected-row": dbCategoryData });
   })
     .catch(err => {
       console.log(err);
